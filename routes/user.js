@@ -26,17 +26,20 @@ router.post("/signup", async (req, res) => {
     const username = req.body.username;
     const email  = req.body.email;
     const password = req.body.password;
-    
+
     try {
       let user = await User.findOne({
         email
       });
+
+      /*
       if (user) {
         return res.status(400).json({
           msg: "User Already Exists"
         });
       }
-
+      */
+     
       user = new User({
         username,
         email,

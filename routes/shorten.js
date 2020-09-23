@@ -34,14 +34,15 @@ router.post('/shorten',async (req, res) => {
     }
 
 	//db.write(req.query.key, {"url": req.query.url});
-	res.send("OK")
+	//res.send("OK")
 });
 
 // Redirect 
 router.get('/:key',async (req, res) => {
 
+    let client;
     try {
-        let client = await MongoClient.connect(url);
+        client = await MongoClient.connect(url);
         let db = client.db("test");
         let urlDocument = await db.collection("urls").findOne({
             shortURL: "https://url-shortener-umesh.herokuapp.com/"+req.params.key
