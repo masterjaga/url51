@@ -66,7 +66,7 @@ router.get('/:key',async (req, res) => {
         }
         client.close();
     } catch (error) {
-        client.close();
+        //client.close();
         console.log(error);
         res.send(error);
     }
