@@ -46,7 +46,7 @@ router.get('/:key',async (req, res) => {
         let urlDocument = await db.collection("urls").findOne({
             shortURL: "https://url-shortener-umesh.herokuapp.com/"+req.params.key
         });
-        console.log(req.params)
+        console.log("req.params : "+req.params)
         if (!urlDocument) {
             res.json({
                 status: 404,
