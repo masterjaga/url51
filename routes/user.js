@@ -13,23 +13,18 @@ const User = require("../model/User");
  * @description - User SignUp
  */
 
-router.post("/signup", [
-  check("username", "Please Enter a Valid Username")
-    .not()
-    .isEmpty(),
-  check("email", "Please enter a valid email").isEmail(),
-  check("password", "Please enter a valid password").isLength({
-    min: 6
-  })],
-  async (req, res) => {
+router.post("/signup", async (req, res) => {
+
+  /*
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array()
       });
     }
-
+*/
     const { username, email, password } = req.body;
+    
     try {
       let user = await User.findOne({
         email
