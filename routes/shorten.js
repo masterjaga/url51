@@ -9,7 +9,7 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://mongoDbUser:3TQSsmEEfTQdnbd@cluster0-mte9s.gcp.mongodb.net?retryWrites=true&w=majority";
 
 // Shortener
-router.post('/shorten', (req, res) => {
+router.post('/shorten',async (req, res) => {
 
     let shortURL = req.body.shortURL;
     let longURL = req.body.longURL;
@@ -38,7 +38,7 @@ router.post('/shorten', (req, res) => {
 });
 
 // Redirect 
-router.get('/:key', (req, res) => {
+router.get('/:key',async (req, res) => {
 
     try {
         let client = await MongoClient.connect(url);
@@ -76,3 +76,5 @@ router.get('/:key', (req, res) => {
     });
     */
 });
+
+module.exports = router;
