@@ -23,7 +23,9 @@ router.post("/signup", async (req, res) => {
       });
     }
 */
-    const { username, email, password } = req.body;
+    const username = req.body.username;
+    const email  = req.body.email;
+    const password = req.body.password;
     
     try {
       let user = await User.findOne({
