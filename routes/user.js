@@ -7,12 +7,6 @@ const auth = require("../middleware/auth");
 
 const User = require("../model/User");
 
-/**
- * @method - POST
- * @param - /signup
- * @description - User SignUp
- */
-
 router.post("/signup", async (req, res) => {
 
   /*
@@ -39,7 +33,7 @@ router.post("/signup", async (req, res) => {
         });
       }
       */
-     
+
       user = new User({
         username,
         email,
@@ -114,15 +108,13 @@ router.post("/login", [
         }
       };
 
-      jwt.sign(
-        payload,
-        "randomString",
-        {
+      jwt.sign(payload,"randomString",{
           expiresIn: 3600
         },
         (err, token) => {
           if (err) throw err;
           res.status(200).json({
+            status: 200,
             token
           });
         }
@@ -135,12 +127,6 @@ router.post("/login", [
     }
   }
 );
-
-/**
- * @method - POST
- * @description - Get LoggedIn User
- * @param - /user/me
- */
 
 router.get("/me", auth, async (req, res) => {
   try {
