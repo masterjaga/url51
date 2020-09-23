@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const user = require("./routes/user");
+const shorten = require("./routes/shorten");
 const InitiateMongoServer = require("./config/db");
 
 InitiateMongoServer();
@@ -19,6 +20,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", user);
+
+app.use("/",shorten);
 
 app.listen(PORT, (req, res) => {
   console.log(`Server Started at PORT ${PORT}`);
