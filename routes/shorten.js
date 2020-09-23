@@ -42,7 +42,7 @@ router.get('/:key',async (req, res) => {
 
     let client;
     try {
-        client = await MongoClient.connect(url);
+        client = await MongoClient.connect(uri);
         let db = client.db("test");
         let urlDocument = await db.collection("urls").findOne({
             shortURL: "https://url-shortener-umesh.herokuapp.com/"+req.params.key
