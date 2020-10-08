@@ -25,8 +25,6 @@ router.post('/shorten', async (req, res) => {
             "user": userEmail
         });
 
-        // TODO add url of each user in user collection
-
         client.close();
         console.log("successfully inserted URLs");
         res.send("successfully inserted URLs");
@@ -99,9 +97,7 @@ router.get('/getURLs/:userEmail', async (req, res) => {
         console.log(err);
         res.send(err);
     }
-
-    //db.write(req.query.key, {"url": req.query.url});
-    //res.send("OK")
+    
 });
 
 module.exports = router;
