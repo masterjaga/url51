@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const user = require("./routes/user");
 const shorten = require("./routes/shorten");
+const resetpassword = require("./routes/resetpassword");
 const InitiateMongoServer = require("./config/db");
 
 InitiateMongoServer();
@@ -20,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", user);
-
+app.use("/password", resetpassword);
 app.use("/",shorten);
 
 app.listen(PORT, (req, res) => {
