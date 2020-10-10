@@ -8,7 +8,7 @@ const auth = require("../middleware/auth");
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://mongoDbUser:3TQSsmEEfTQdnbd@cluster0-mte9s.gcp.mongodb.net?retryWrites=true&w=majority";
 
-userRoutes.post('/forgot', function (req, res) {
+router.post('/forgot', function (req, res) {
 
     const email = req.body.email
     User
@@ -60,7 +60,7 @@ userRoutes.post('/forgot', function (req, res) {
         })
 })
 
-app.get('/reset/:token', function (req, res) {
+router.get('/reset/:token', function (req, res) {
     User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
         if (!user) {
             req.flash('error', 'Password reset token is invalid or has expired.');
@@ -72,7 +72,7 @@ app.get('/reset/:token', function (req, res) {
     });
 });
 
-app.post('/reset/:token', function(req, res) {
+router.post('/reset/:token', function(req, res) {
     async.waterfall([
       function(done) {
         User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
